@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>TeacherControllerServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.TeacherControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PrincipalControllerServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.PrincipalControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherControllerServlet</servlet-name>
+        <url-pattern>/TeacherControllerServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrincipalControllerServlet</servlet-name>
+        <url-pattern>/PrincipalControllerServlet.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <security-constraint>
+        <display-name>Principal Constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Principal resource</web-resource-name>
+            <description>principal resources</description>
+            <url-pattern>/count_gender.html</url-pattern>
+            <url-pattern>/average_male_age.html</url-pattern>
+            <url-pattern>/average_female_age.html</url-pattern>
+            <url-pattern>/youngest.html</url-pattern>
+            <url-pattern>/PrincipalControllerServlet.do</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Enable principal authentication constraint</description>
+            <role-name>Principal</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Teacher Constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Teacher Resource</web-resource-name>
+            <description>Teacher Resources</description>
+            <url-pattern>/create.html</url-pattern>
+            <url-pattern>/count.html</url-pattern>
+            <url-pattern>/remove.html</url-pattern>
+            <url-pattern>/search.html</url-pattern>
+            <url-pattern>/view_all.html</url-pattern>
+            <url-pattern>/TeacherControllerServlet.do</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Enable teacher authentication constraint</description>
+            <role-name>Teacher</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>studentFile</realm-name>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/login_error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>Principal role</description>
+        <role-name>Principal</role-name>
+    </security-role>
+    <security-role>
+        <description>Teacher role</description>
+        <role-name>Teacher</role-name>
+    </security-role>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/access_denied.jsp</location>
+    </error-page>
+</web-app>

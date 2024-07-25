@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Add Student</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Add Student</h1>
+        
+        <form action="TeacherControllerServlet.do" method="POST" enctype="multipart/form-data">
+            
+            <table id="table">
+                <tr>
+                    <td>Student Number: </td>
+                    <td><input type="number" name="student_number" required /></td>
+                </tr>
+                <tr>
+                    <td>Name: </td>
+                    <td><input type="text" name="name" required /></td>
+                </tr>
+                <tr>
+                    <td>Surname: </td>
+                    <td><input type="text" name="surname" required /></td>
+                </tr>
+                <tr>
+                    <td>Photo: </td>
+                    <td><input type="file" name="photo" accept="image/*" required /></td>
+                </tr>
+                <tr>
+                    <td>Age: </td>
+                    <td><input type="number" name="age" required /></td>
+                </tr>
+                <tr>
+                    <td>Gender: </td>
+                    <td>
+                        <select name="gender">
+                            <option value="M" selected>Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="row">
+                    <td>Module: </td>
+                    <td><input id="module" type="text" name="module" required /></td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <td><input type="submit" value="ADD"></td>
+                    <td><input type="hidden" name="op" value="1"></td>
+                    <td><button type="button" onclick="addModule()">Add Module</button></td>
+                </tr>
+            </table>
+        </form>
+        
+        <script>
+            function addModule() {
+                var table = document.getElementById('table'); //get 1st table element
+                var row = document.getElementById('row').cloneNode(true); //get the tr element - including its child elements
+                
+                row.removeAttribute('id'); //remove tr element id
+                
+                var input = row.querySelector('input[type="text"]'); //get child element(input) of tr element
+                input.removeAttribute('id'); //remove id from input element
+                input.value = ''; //set value of input element to an empty string
+
+                table.appendChild(row); //add a new row for a module in the 1st table
+            }
+        </script>
+    </body>
+</html>
