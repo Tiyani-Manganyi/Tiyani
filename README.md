@@ -1,5 +1,5 @@
 # MANGANYI TIYANI
-
+  ![GitHub repo size](https://img.shields.io/github/repo-size/Tiyani-Manganyi/Tiyani-Manganyi.github.io?)
 
 ## EDUCATIONAL QUALIFICATIONS 
 
